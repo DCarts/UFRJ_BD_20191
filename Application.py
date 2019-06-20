@@ -48,16 +48,6 @@ def firstload():
     dict1['database'] = input('Insira o nome do banco de dados: ');
     dict1['user'] = input('Insira o nome de usuario do banco de dados: ');
     dict1['passwd'] = input('Insira a senha do usuario do banco de dados: ');
-
-    Config = configparser.ConfigParser()
-    cfgfile = open("config.ini",'w')
-    Config.add_section('SQL Connection info')
-    Config.set('SQL Connection info','host', dict1['host'])
-    Config.set('SQL Connection info','database', dict1['database'])
-    Config.set('SQL Connection info','user', dict1['user'])
-    Config.set('SQL Connection info','passwd', dict1['passwd'])
-    Config.write(cfgfile)
-    cfgfile.close()
     
     return dict1
 
@@ -303,8 +293,20 @@ conn = connectdb_opt(options);
 
 if (conn == None):
     print('Houve um problema ao se conectar ao banco de dados.');
+    cfgfile = open("config.ini",'w')
+    cfgfile.close()
     exit();
-
+else:
+    Config = configparser.ConfigParser()
+    cfgfile = open("config.ini",'w')
+    Config.add_section('SQL Connection info')
+    Config.set('SQL Connection info','host', options['host'])
+    Config.set('SQL Connection info','database', options['database'])
+    Config.set('SQL Connection info','user', options['user'])
+    Config.set('SQL Connection info','passwd', options['passwd'])
+    Config.write(cfgfile)
+    cfgfile.close()
+    
 commands = {
     'h': mandaAjuda,
     'help': mandaAjuda,
