@@ -5,7 +5,7 @@
 #   | Gabriel Izoton Graça de Oliveira | 117056128 |
 #   | Daniel Cardoso Cruz de Souza     | 117051136 |
 #   | Bruno Gavarra de Araujo          | 113161280 |
-#   | Margot Luisa Herin               | 119086624 |
+#   | Margot Luisa Herin               | 000000000 |
 #   | Victor Augusto Souza de Oliveira | 113044501 |
 #   | Carolina Hiromi Kameyama         | 116022176 |
 #   '----------------------------------'-----------'
@@ -18,12 +18,22 @@
 #    Tipo do Script: Aplicação do item H (Inserts, Updates, Deletes, Selects, Relatórios...)
 #
 #
+#
+#    !!! IMPORTANTE !!!
+#    Este programa assume, por simplicidade, que o arquivo Scripts.sql foi executado completamente.
+#    Ou seja, ele assume que o banco de dados já foi criado, as tabelas já foram criadas e os procedimentos já foram criados.
+#    Há um motivo para justificar isso:
+#
+#    -> Devido à limitações com o tempo, não foi possível corrigir um bug no qual o conector do MySQL para Python 
+#    executava somente uma instrução por conexão e trava o programa para qualquer instrução subsequente que seja executada.
+#
+#
+
 
 import configparser
 import mysql.connector
 from contextlib import closing
 from mysql.connector import errorcode
-
 
 def loadconfigsection(cfg, section):
     dict1 = {}
